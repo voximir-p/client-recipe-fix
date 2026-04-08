@@ -47,7 +47,7 @@ public class ClientRecipeFixClient implements ClientModInitializer {
         });
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            boolean jeiLoaded = FabricLoader.getInstance().isModLoaded("roughlyenoughitems");
+            boolean jeiLoaded = FabricLoader.getInstance().isModLoaded("jei");
 
             if (jeiLoaded && client.player != null) {
                 client.player.displayClientMessage(
