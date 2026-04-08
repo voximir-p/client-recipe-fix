@@ -3,20 +3,15 @@ package org.voximir.client_recipe_fix.client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.recipe.v1.sync.ClientRecipeSynchronizedEvent;
-import net.fabricmc.fabric.api.recipe.v1.sync.SynchronizedRecipes;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * Loads vanilla recipes from the MC JAR and fires ClientRecipeSynchronizedEvent
@@ -50,6 +45,26 @@ public class ClientRecipeFixClient implements ClientModInitializer {
                 performInjection(mc);
             }
         });
+
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            boolean jeiLoaded = FabricLoader.getInstance().isModLoaded("roughlyenoughitems");
+
+            if (jeiLoaded && client.player != null) {
+                client.player.displayClientMessage(
+                        Component.literal(
+                                """
+                                        [Client Recipe Fix] §cJEI is detected!§r
+                                        Full recipe sync with JEI requires Minecraft 1.21.10 or newer.
+                                        On versions 1.21.9 and below, this is limited by the Fabric API.
+                                        For full support on older versions, consider using REI instead.
+                                        """
+                        ),
+                        false
+                );
+            }
+
+            ticksUntilInjection = INJECTION_DELAY_TICKS;
+        });
     }
 
     private void performInjection(Minecraft client) {
@@ -66,13 +81,6 @@ public class ClientRecipeFixClient implements ClientModInitializer {
                 return;
             }
 
-            // Wrap in a RecipeMap and fire the Fabric API event that JEI listens for
-            RecipeMap recipeMap = RecipeMap.create(recipes);
-            ClientRecipeSynchronizedEvent.EVENT.invoker()
-                    .onRecipesSynchronized(client, new RecipeMapSynchronizedRecipes(recipeMap));
-
-            LOGGER.info("Fired recipe sync with {} recipes", recipes.size());
-
             // Fire Architectury event for REI (only if Architectury is present)
             try {
                 REICompat.fireRecipeAddEvent(connection.recipes(), recipes);
@@ -81,36 +89,6 @@ public class ClientRecipeFixClient implements ClientModInitializer {
             }
         } catch (Exception e) {
             LOGGER.error("Failed to inject recipes", e);
-        }
-    }
-
-    private record RecipeMapSynchronizedRecipes(RecipeMap recipeMap) implements SynchronizedRecipes {
-        @Override
-        public <I extends RecipeInput, T extends Recipe<I>> Stream<RecipeHolder<T>> getAllMatches(
-                RecipeType<T> type, I input, Level level) {
-            return recipeMap.getRecipesFor(type, input, level);
-        }
-
-        @Override
-        public <I extends RecipeInput, T extends Recipe<I>> Collection<RecipeHolder<T>> getAllOfType(
-                RecipeType<T> type) {
-            return recipeMap.byType(type);
-        }
-
-        @Override
-        public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getFirstMatch(
-                RecipeType<T> type, I input, Level level) {
-            return recipeMap.getRecipesFor(type, input, level).findFirst();
-        }
-
-        @Override
-        public RecipeHolder<?> get(ResourceKey<Recipe<?>> key) {
-            return recipeMap.byKey(key);
-        }
-
-        @Override
-        public Collection<RecipeHolder<?>> recipes() {
-            return recipeMap.values();
         }
     }
 }
