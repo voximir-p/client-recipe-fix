@@ -1,21 +1,19 @@
 # 🍳 Client Recipe Fix (JEI / REI)
 
----
+[<img alt="Requires Fabric API" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg">]()
+[<img alt="Available on CurseForge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg">]()
 
 ## ✨ What is this?
 
-**Client Recipe Fix** restores access to **all vanilla crafting recipes** in your client so mods like **JEI** and **REI
-** can display them properly again even on servers where recipes aren't fully synced.
+**Client Recipe Fix** restores access to **all vanilla crafting recipes** in your client so mods like **JEI** and **REI** can display them properly again even on servers where recipes aren't fully synced.
 
 Since Minecraft 1.21.2, servers only send *unlocked* recipes to players.
 That means recipe viewers show… almost nothing 😐
 
 This mod fixes that entirely client-side!
 
-> ⚠️ NOTICE: This only restores **vanilla recipes**<br>
+> ⚠️ This mod can only restore **vanilla recipes**!<br>
 > Custom datapack or server recipes cannot be accessed (they are never sent to the client)
-
----
 
 ## 🚀 Features
 
@@ -26,45 +24,11 @@ This mod fixes that entirely client-side!
 * **Lightweight & fast**, it loads instantly with the game
 * **Automatic fallback** when recipes are missing
 
----
-
 ## 🧠 How it works
 
 * Loads **vanilla recipe data** directly from the Minecraft client
 * Injects missing recipes into the client's recipe system
 * Allows JEI / REI to display recipes as if they were unlocked
-
----
-
-## 📦 Requirements
-
-1. Install **Fabric Loader**
-2. Install **Fabric API**
-3. Drop this mod into your `mods` folder
-4. (Optional) Install **JEI** or **REI**
-5. Launch the game 🎉
-
----
-
-## 🔧 Compatibility
-
-* ✅ Minecraft 1.21.2+
-* ✅ Fabric
-* ✅ Works with JEI & REI
-* ❌ Does NOT require server-side installation
-* ❌ Does NOT reveal hidden server/datapack recipes
-
----
-
-## ⚙️ Configuration (optional)
-
-*(If implemented)*
-
-* Enable/disable recipe injection
-* Debug logging
-* Only inject when recipes are missing
-
----
 
 ## 🧪 Why use this?
 
@@ -77,51 +41,20 @@ With this mod:
 
 * Everything just works ✅
 
----
-
-## 📸 Before / After
-
-| Without Mod       | With Client Recipe Fix |
-|-------------------|------------------------|
-| ❌ Missing recipes | ✅ Full vanilla recipes |
-| ❌ Requires OP     | ✅ Works everywhere     |
-| 😵 Confusing      | 😌 Smooth experience   |
-
----
-
 ## 💡 FAQ
 
 ### Does this give me recipes in the recipe book?
 
-No — this is **display-only**. It does not unlock recipes for gameplay.
+No, this is only for JEI / REI. You would still need to unlock the recipes in the recipe book by yourself.
 
 ### Can it show modded or datapack recipes?
 
-No — those are controlled by the server and cannot be accessed client-side.
+No, those are controlled by the server and cannot be accessed client-side.
 
 ### Is this cheating?
 
-No — it only restores **vanilla knowledge**, similar to using a wiki.
-
----
-
-## 🛠️ For Developers
-
-* Injects into the client `RecipeManager`
-* Loads recipes via `ResourceManager`
-* Safely merges with server-provided data
-* Designed to be compatible with JEI / REI APIs
-
----
-
-## ❤️ Credits
-
-* Minecraft modding community
-* JEI & REI developers
-* Everyone frustrated by missing recipes 😄
-
----
+No, it only restores **vanilla knowledge**, similar to using a wiki.
 
 ## 📜 License
 
-*(Choose your license — MIT / MIT-0 / CC0 recommended for mods like this)*
+This project is licensed under the MIT license. See [LICENSE](LICENSE) for more details.

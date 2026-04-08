@@ -7,7 +7,11 @@
   "authors": [
     "voximir"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://modrinth.com/mod/client-recipe-fix",
+    "sources": "https://github.com/voximir-p/client-recipe-fix",
+    "issues": "https://github.com/voximir-p/client-recipe-fix/issues"
+  },
   "license": "MIT",
   "icon": "assets/client_recipe_fix/icon.png",
   "environment": "client",
