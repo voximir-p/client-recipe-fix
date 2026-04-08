@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.15.5'
+    id 'fabric-loom' version '1.16.1'
     id 'maven-publish'
 }
 
@@ -12,6 +12,7 @@ base {
 
 repositories {
     maven { url = "https://maven.architectury.dev/" }
+    maven { url = "https://maven.terraformersmc.com/" }
 }
 
 dependencies {
@@ -23,6 +24,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modCompileOnly "dev.architectury:architectury-fabric:19.0.1"
+
+    modRuntimeOnly "com.terraformersmc:modmenu:17.0.0-beta.2"
 }
 
 processResources {
