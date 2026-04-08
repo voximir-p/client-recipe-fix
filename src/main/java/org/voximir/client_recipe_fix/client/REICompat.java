@@ -59,7 +59,7 @@ public class REICompat {
             }
         }
 
-        LOGGER.info("[JEI Fix] Firing Architectury ADD event with {} display entries for REI", entries.size());
+        LOGGER.info("Firing Architectury ADD event with {} display entries for REI", entries.size());
         ClientRecipeUpdateEvent.ADD.invoker().add(recipeAccess, entries);
     }
 }
