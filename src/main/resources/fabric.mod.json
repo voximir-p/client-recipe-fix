@@ -13,7 +13,7 @@
     "issues": "https://github.com/voximir-p/client-recipe-fix/issues"
   },
   "license": "MIT",
-  "icon": "assets/client_recipe_fix/icon.png",
+  "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -21,6 +21,14 @@
     ]
   },
   "accessWidener": "client_recipe_fix.accesswidener",
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.github_releases": "https://github.com/voximir-p/client-recipe-fix/releases",
+        "modmenu.modrinth": "https://modrinth.com/mod/client-recipe-fix"
+      }
+    }
+  },
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
