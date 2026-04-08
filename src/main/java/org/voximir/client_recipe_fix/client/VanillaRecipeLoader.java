@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class VanillaRecipeLoader {
-    private static final Logger LOGGER = LoggerFactory.getLogger("client_recipe_fix");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
     /**
      * Reads all vanilla recipe JSONs from the minecraft-common JAR and deserializes them.
@@ -39,7 +39,7 @@ public class VanillaRecipeLoader {
             URI jarUri = RecipeManager.class.getProtectionDomain().getCodeSource().getLocation().toURI();
             Path jarPath = Path.of(jarUri);
 
-            LOGGER.info("[Client Recipe Fix] Loading recipes from: {}", jarPath);
+            LOGGER.info("Loading recipes from: {}", jarPath);
 
             if (Files.isDirectory(jarPath)) {
                 // Dev env - exploded classes
@@ -47,7 +47,7 @@ public class VanillaRecipeLoader {
                 if (Files.isDirectory(recipeDir)) {
                     loadFromDirectory(recipeDir, registries, recipes);
                 } else {
-                    LOGGER.warn("[Client Recipe Fix] Recipe dir not found at {}", recipeDir);
+                    LOGGER.warn("Recipe dir not found at {}", recipeDir);
                 }
             } else {
                 // Production - inside JAR
@@ -56,15 +56,15 @@ public class VanillaRecipeLoader {
                     if (Files.isDirectory(recipeDir)) {
                         loadFromDirectory(recipeDir, registries, recipes);
                     } else {
-                        LOGGER.warn("[Client Recipe Fix] Recipe dir not found in JAR");
+                        LOGGER.warn("Recipe dir not found in JAR");
                     }
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("[Client Recipe Fix] Failed to locate recipe JAR", e);
+            LOGGER.error("Failed to locate recipe JAR", e);
         }
 
-        LOGGER.info("[Client Recipe Fix] Loaded {} vanilla recipes", recipes.size());
+        LOGGER.info("Loaded {} vanilla recipes", recipes.size());
         return recipes;
     }
 
@@ -72,7 +72,7 @@ public class VanillaRecipeLoader {
                                           List<RecipeHolder<?>> recipes) {
         try (Stream<Path> paths = Files.walk(recipeDir)) {
             List<Path> jsonFiles = paths.filter(p -> p.toString().endsWith(".json")).toList();
-            LOGGER.info("[Client Recipe Fix] Found {} recipe files", jsonFiles.size());
+            LOGGER.info("Found {} recipe files", jsonFiles.size());
 
             for (Path jsonFile : jsonFiles) {
                 String relativePath = recipeDir.relativize(jsonFile).toString();
@@ -91,11 +91,11 @@ public class VanillaRecipeLoader {
                         recipes.add(holder);
                     }
                 } catch (Exception e) {
-                    LOGGER.warn("[Client Recipe Fix] Failed to parse recipe {}: {}", recipeId, e.getMessage());
+                    LOGGER.warn("Failed to parse recipe {}: {}", recipeId, e.getMessage());
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("[Client Recipe Fix] Failed to walk recipe directory", e);
+            LOGGER.error("Failed to walk recipe directory", e);
         }
     }
 }

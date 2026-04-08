@@ -3,7 +3,7 @@
   "id": "client_recipe_fix",
   "version": "${version}",
   "name": "Client Recipe Fix",
-  "description": "Grants JEI / REI access to vanilla recipes when server.",
+  "description": "Grants JEI / REI access to vanilla recipes on server.",
   "authors": [
     "voximir"
   ],

@@ -24,21 +24,23 @@ import java.util.stream.Stream;
  * any real server sync finish first.
  */
 public class ClientRecipeFixClient implements ClientModInitializer {
-    private static final Logger LOGGER = LoggerFactory.getLogger("client_recipe_fix");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
     private static final int INJECTION_DELAY_TICKS = 20;
 
     private int ticksUntilInjection = -1;
 
     @Override
     public void onInitializeClient() {
-        LOGGER.info("[Client Recipe Fix] Initialized");
+        LOGGER.info("Initialized");
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            LOGGER.info("[Client Recipe Fix] Joined server, injecting recipes in {} ticks", INJECTION_DELAY_TICKS);
+            LOGGER.info("Joined server, injecting recipes in {} ticks", INJECTION_DELAY_TICKS);
             ticksUntilInjection = INJECTION_DELAY_TICKS;
         });
 
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> ticksUntilInjection = -1);
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+            ticksUntilInjection = -1;
+        });
 
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
             if (ticksUntilInjection > 0) {
@@ -54,24 +56,31 @@ public class ClientRecipeFixClient implements ClientModInitializer {
         try {
             ClientPacketListener connection = client.getConnection();
             if (connection == null) {
-                LOGGER.warn("[Client Recipe Fix] No connection, skipping");
+                LOGGER.warn("No connection, skipping");
                 return;
             }
 
             List<RecipeHolder<?>> recipes = VanillaRecipeLoader.loadVanillaRecipes(connection.registryAccess());
             if (recipes.isEmpty()) {
-                LOGGER.warn("[Client Recipe Fix] No recipes loaded");
+                LOGGER.warn("No recipes loaded");
                 return;
             }
 
-            // Wrap in a RecipeMap and fire the Fabric API event that JEI/REI listen for
+            // Wrap in a RecipeMap and fire the Fabric API event that JEI listens for
             RecipeMap recipeMap = RecipeMap.create(recipes);
             ClientRecipeSynchronizedEvent.EVENT.invoker()
                     .onRecipesSynchronized(client, new RecipeMapSynchronizedRecipes(recipeMap));
 
-            LOGGER.info("[Client Recipe Fix] Fired recipe sync with {} recipes", recipes.size());
+            LOGGER.info("Fired recipe sync with {} recipes", recipes.size());
+
+            // Fire Architectury event for REI (only if Architectury is present)
+            try {
+                REICompat.fireRecipeAddEvent(connection.recipes(), recipes);
+            } catch (NoClassDefFoundError ignored) {
+                // Architectury/REI not installed, skip
+            }
         } catch (Exception e) {
-            LOGGER.error("[Client Recipe Fix] Failed to inject recipes", e);
+            LOGGER.error("Failed to inject recipes", e);
         }
     }
 
