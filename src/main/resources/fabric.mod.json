@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "client_recipe_fix",
+  "version": "${version}",
+  "name": "Client Recipe Fix",
+  "description": "Grants JEI / REI access to vanilla recipes when server.",
+  "authors": [
+    "voximir"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/client_recipe_fix/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "org.voximir.client_recipe_fix.client.ClientRecipeFixClient"
+    ]
+  },
+  "accessWidener": "client_recipe_fix.accesswidener",
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
