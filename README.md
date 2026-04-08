@@ -14,6 +14,10 @@ This mod fixes that entirely client-side!
 > ⚠️ This mod can only restore **vanilla recipes**!<br>
 > Custom datapack or server recipes cannot be accessed (they are never sent to the client)
 
+> ⚠️ Full recipe sync with JEI requires Minecraft 1.21.10 or newer.<br>
+> On versions 1.21.9 and below, this is limited by the Fabric API.<br>
+> For full support on older versions, consider using REI instead.
+
 ## 🚀 Features
 
 * **Restores all vanilla recipes** for display in JEI / REI
