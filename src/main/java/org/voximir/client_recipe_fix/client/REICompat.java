@@ -23,7 +23,7 @@ import java.util.OptionalInt;
  */
 public class REICompat {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("jei_fix");
+    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
     public static void fireRecipeAddEvent(RecipeAccess recipeAccess, List<RecipeHolder<?>> recipes) {
         List<ClientboundRecipeBookAddPacket.Entry> entries = new ArrayList<>();
