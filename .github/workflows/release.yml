@@ -1,0 +1,75 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build mod
+        run: ./gradlew build
+
+      - name: Extract version from tag
+        id: tag_info
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          # Extract the semver part before the '+' (e.g. 1.1.0 from 1.1.0+mc21.10-21.11)
+          VERSION="${TAG%%+*}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Parse changelog
+        id: changelog
+        run: |
+          VERSION="${{ steps.tag_info.outputs.version }}"
+
+          # Extract the release title line, e.g. "## [1.1.0] - 2026-04-09"
+          TITLE=$(grep -E "^## \[$VERSION\]" CHANGELOG.md | head -1 | sed 's/^## //')
+
+          # Extract the body between this version heading and the next one (or EOF)
+          BODY=$(awk "/^## \[$VERSION\]/{found=1; next} found && /^## \[/{exit} found{print}" CHANGELOG.md)
+
+          # Trim leading/trailing blank lines from body
+          BODY=$(echo "$BODY" | sed -e '/./,$!d' -e :a -e '/^\n*$/{$d;N;ba}')
+
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
+
+          # Use heredoc for multiline body
+          {
+            echo "body<<CHANGELOG_EOF"
+            echo "$BODY"
+            echo "CHANGELOG_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Rename jar
+        run: |
+          TAG="${{ steps.tag_info.outputs.tag }}"
+          MOD_VERSION=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
+          mv "build/libs/client-recipe-fix-${MOD_VERSION}.jar" \
+             "build/libs/client-recipe-fix-${TAG}.jar"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.changelog.outputs.title }}
+          body: ${{ steps.changelog.outputs.body }}
+          files: build/libs/client-recipe-fix-${{ steps.tag_info.outputs.tag }}.jar
