@@ -53,6 +53,11 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
+      - name: Fetch latest CHANGELOG.md from main
+        run: |
+          git fetch origin main
+          git show origin/main:CHANGELOG.md > CHANGELOG.md
+
       - name: Parse changelog
         id: changelog
         run: |
