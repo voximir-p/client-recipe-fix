@@ -32,7 +32,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": ">=1.21.2 <=${minecraft_version}"
   },
   "mixins": [
     "client_recipe_fix.mixins.json"
