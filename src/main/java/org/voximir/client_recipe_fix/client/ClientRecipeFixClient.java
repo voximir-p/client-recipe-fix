@@ -72,13 +72,6 @@ public class ClientRecipeFixClient implements ClientModInitializer {
                     .onRecipesSynchronized(client, new RecipeMapSynchronizedRecipes(recipeMap));
 
             LOGGER.info("Fired recipe sync with {} recipes", recipes.size());
-
-            // Fire Architectury event for REI (only if Architectury is present)
-            try {
-                REICompat.fireRecipeAddEvent(connection.recipes(), recipes);
-            } catch (NoClassDefFoundError ignored) {
-                // Architectury/REI not installed, skip
-            }
         } catch (Exception e) {
             LOGGER.error("Failed to inject recipes", e);
         }

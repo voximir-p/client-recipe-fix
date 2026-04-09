@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.16.1'
+    id 'net.fabricmc.fabric-loom' version '1.16.1'
     id 'maven-publish'
 }
 
@@ -19,33 +19,36 @@ repositories {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "dev.architectury:architectury-fabric:19.0.1"
+    // implementation "dev.architectury:architectury-fabric:19.0.1"
 
-    modRuntimeOnly "com.terraformersmc:modmenu:17.0.0-beta.2"
-    modRuntimeOnly "me.shedaniel.cloth:cloth-config-fabric:21.11.153"
+    // runtimeOnly "com.terraformersmc:modmenu:18.0.0-alpha.4"
+    // runtimeOnly "me.shedaniel.cloth:cloth-config-fabric:21.11.153"
 
-    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
+    // implementation "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "minecraft_version", project.minecraft_version
-    inputs.property "loader_version", project.loader_version
+    def projectVersion = project.version
+    def projectMinecraftVersion = project.minecraft_version
+    def projectLoaderVersion = project.loader_version
+
+    inputs.property "version", projectVersion
+    inputs.property "minecraft_version", projectMinecraftVersion
+    inputs.property "loader_version", projectLoaderVersion
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version,
-                "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
+        expand "version": projectVersion,
+                "minecraft_version": projectMinecraftVersion,
+                "loader_version": projectLoaderVersion
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
@@ -69,8 +72,9 @@ java {
 }
 
 jar {
+    def projectArchivesBaseName = project.archives_base_name
     from("LICENSE") {
-        rename { "${it}_${project.archives_base_name}" }
+        rename { "${it}_${projectArchivesBaseName}" }
     }
 }
 

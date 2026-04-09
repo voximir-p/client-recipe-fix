@@ -32,11 +32,8 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
-    "minecraft": ">=1.21.10 <=1.21.11"
+    "minecraft": "~26.1"
   },
-  "mixins": [
-    "client_recipe_fix.mixins.json"
-  ],
   "suggests": {
     "jei": "*",
     "roughlyenoughitems": "*"

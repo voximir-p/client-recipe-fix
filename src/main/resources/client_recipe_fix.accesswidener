@@ -1,4 +1,4 @@
-accessWidener v2 named
+accessWidener v2 official
 
 # RecipeManager.fromJson is protected; we need it to deserialize recipe JSONs
 accessible method net/minecraft/world/item/crafting/RecipeManager fromJson (Lnet/minecraft/resources/ResourceKey;Lcom/google/gson/JsonObject;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/crafting/RecipeHolder;
