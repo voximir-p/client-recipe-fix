@@ -64,8 +64,8 @@ jobs:
         run: |
           VERSION="${{ steps.tag_info.outputs.version }}"
 
-          # Extract the release title line, e.g. "## [1.1.0] - 2026-04-09"
-          TITLE=$(grep -E "^## \[$VERSION\]" CHANGELOG.md | head -1 | sed 's/^## //')
+          # Extract the release title line, e.g. "## [1.1.0] - 2026-04-09" -> "1.1.0 - 2026-04-09"
+          TITLE=$(grep -E "^## \[$VERSION\]" CHANGELOG.md | head -1 | sed 's/^## //' | tr -d '[]')
 
           # Extract the body between this version heading and the next heading or link references (or EOF)
           BODY=$(awk "/^## \[$VERSION\]/{found=1; next} found && /^## \[/{exit} found && /^\[.*\]: /{exit} found{print}" CHANGELOG.md)
@@ -75,19 +75,23 @@ jobs:
 
           echo "title=$TITLE" >> "$GITHUB_OUTPUT"
 
-          # Use heredoc for multiline body
+          # Use heredoc for multiline body, prepend "## Release Notes"
           {
             echo "body<<CHANGELOG_EOF"
+            echo "## Release Notes"
+            echo ""
             echo "$BODY"
             echo "CHANGELOG_EOF"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Rename jar
+      - name: Rename jar and generate sha256
         run: |
           TAG="${{ steps.tag_info.outputs.tag }}"
           MOD_VERSION=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
           mv "build/libs/client-recipe-fix-${MOD_VERSION}.jar" \
              "build/libs/client-recipe-fix-${TAG}.jar"
+          cd build/libs
+          sha256sum -b "client-recipe-fix-${TAG}.jar" > "client-recipe-fix-${TAG}.jar.sha256"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -95,4 +99,6 @@ jobs:
           tag_name: ${{ steps.tag_info.outputs.tag }}
           name: ${{ steps.changelog.outputs.title }}
           body: ${{ steps.changelog.outputs.body }}
-          files: build/libs/client-recipe-fix-${{ steps.tag_info.outputs.tag }}.jar
+          files: |
+            build/libs/client-recipe-fix-${{ steps.tag_info.outputs.tag }}.jar
+            build/libs/client-recipe-fix-${{ steps.tag_info.outputs.tag }}.jar.sha256
