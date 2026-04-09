@@ -28,6 +28,8 @@ dependencies {
 
     modRuntimeOnly "com.terraformersmc:modmenu:16.0.0"
     modRuntimeOnly "me.shedaniel.cloth:cloth-config-fabric:20.0.149"
+
+    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:21.9.813"
 }
 
 processResources {
