@@ -38,9 +38,7 @@ public class ClientRecipeFixClient implements ClientModInitializer {
             ticksUntilInjection = INJECTION_DELAY_TICKS;
         });
 
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
-            ticksUntilInjection = -1;
-        });
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> ticksUntilInjection = -1);
 
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
             if (ticksUntilInjection > 0) {
