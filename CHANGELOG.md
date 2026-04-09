@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Nothing yet.
+- Ported the project to Minecraft 26.1.2, but it should work on Minecraft 26.1 and 26.1.1 as well.
 
 ## [1.1.2] - 2026-04-09
 
