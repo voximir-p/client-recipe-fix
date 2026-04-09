@@ -53,10 +53,11 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Fetch latest CHANGELOG.md from main
+      - name: Fetch latest CHANGELOG.md from default branch
         run: |
-          git fetch origin main
-          git show origin/main:CHANGELOG.md > CHANGELOG.md
+          DEFAULT_BRANCH=$(git remote show origin | sed -n 's/.*HEAD branch: //p')
+          git fetch origin "$DEFAULT_BRANCH"
+          git show "origin/$DEFAULT_BRANCH:CHANGELOG.md" > CHANGELOG.md
 
       - name: Parse changelog
         id: changelog
