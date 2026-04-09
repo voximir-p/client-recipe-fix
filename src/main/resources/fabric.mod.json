@@ -36,5 +36,9 @@
   },
   "mixins": [
     "client_recipe_fix.mixins.json"
-  ]
+  ],
+  "suggests": {
+    "jei": "*",
+    "roughlyenoughitems": "*"
+  }
 }
