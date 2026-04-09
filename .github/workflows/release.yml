@@ -75,7 +75,7 @@ jobs:
             build/libs/client-recipe-fix-${{ needs.build-setup.outputs.tag }}.jar.sha256
 
   release-setup:
-    needs: build-setup
+    needs: [build-setup, build]
     runs-on: ubuntu-latest
     outputs:
       title: ${{ steps.changelog.outputs.title }}
