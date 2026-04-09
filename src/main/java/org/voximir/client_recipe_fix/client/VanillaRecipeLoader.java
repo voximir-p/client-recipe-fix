@@ -5,7 +5,7 @@ import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -78,7 +78,7 @@ public class VanillaRecipeLoader {
                 String relativePath = recipeDir.relativize(jsonFile).toString();
                 String recipeIdPath = relativePath.substring(0, relativePath.length() - 5)
                         .replace('\\', '/');
-                Identifier recipeId = Identifier.fromNamespaceAndPath("minecraft", recipeIdPath);
+                ResourceLocation recipeId = ResourceLocation.fromNamespaceAndPath("minecraft", recipeIdPath);
 
                 try {
                     ResourceKey<Recipe<?>> key = ResourceKey.create(Registries.RECIPE, recipeId);
