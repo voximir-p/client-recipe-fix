@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(targets = "me.shedaniel.rei.impl.client.gui.hints.ImportantWarningsWidget")
 public class ImportantWarningsWidgetMixin {
 
-    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "method_25394(Lnet/minecraft/class_332;IIF)V", at = @At("HEAD"), cancellable = true, remap = false)
     private void cancelRender(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         ci.cancel();
     }
