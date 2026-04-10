@@ -1,4 +1,4 @@
-package org.voximir.client_recipe_fix.client;
+package org.voximir.client_recipe_fix.client.injector;
 
 import net.fabricmc.fabric.api.client.recipe.v1.sync.ClientRecipeSynchronizedEvent;
 import net.fabricmc.fabric.api.recipe.v1.sync.SynchronizedRecipes;

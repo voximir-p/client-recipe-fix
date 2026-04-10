@@ -1,4 +1,4 @@
-package org.voximir.client_recipe_fix.client;
+package org.voximir.client_recipe_fix.client.injector;
 
 import dev.architectury.event.events.client.ClientRecipeUpdateEvent;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
