@@ -4,19 +4,21 @@ import net.fabricmc.fabric.api.client.recipe.v1.sync.ClientRecipeSynchronizedEve
 import net.fabricmc.fabric.api.recipe.v1.sync.SynchronizedRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
+import net.minecraft.world.item.crafting.RecipeMap;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class JEIInjector {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
 
+public class JEIRecipeInjector {
     public static void injectRecipes(Minecraft client, List<RecipeHolder<?>> recipes) {
         // Wrap in a RecipeMap and fire the Fabric API event that JEI listens for
         RecipeMap recipeMap = RecipeMap.create(recipes);

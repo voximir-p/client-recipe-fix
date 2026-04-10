@@ -3,17 +3,14 @@ package org.voximir.client_recipe_fix.client.injector;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.voximir.client_recipe_fix.client.VanillaRecipeLoader;
 
 import java.util.List;
 
-import static org.voximir.client_recipe_fix.client.ClientRecipeFixClient.jeiLoaded;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.jeiLoaded;
 
-public class Injector {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
-
+public class RecipeInjector {
     public static void performInjection(Minecraft client) {
         try {
             ClientPacketListener connection = client.getConnection();
@@ -29,11 +26,10 @@ public class Injector {
             }
 
             // Inject into JEI (only if JEI is present and supported)
-            if (jeiLoaded) JEIInjector.injectRecipes(client, recipes);
+            if (jeiLoaded) JEIRecipeInjector.injectRecipes(client, recipes);
 
-            // REI is not supported, yet
             // Fire Architectury event for REI (only if REI is present)
-            // if (reiLoaded) REIInjector.injectRecipes(connection.recipes(), recipes);
+            // if (reiLoaded) REIRecipeInjector.injectRecipes(connection.recipes(), recipes);
 
         } catch (Exception e) {
             LOGGER.error("Failed to inject recipes", e);
