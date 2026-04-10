@@ -13,8 +13,6 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import org.jspecify.annotations.NonNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,9 +25,9 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class VanillaRecipeLoader {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
+import static com.mojang.text2speech.Narrator.LOGGER;
 
+public class VanillaRecipeLoader {
     /**
      * Reads all vanilla recipe JSONs from the minecraft-common JAR and deserializes them.
      */

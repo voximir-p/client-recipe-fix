@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ClientRecipeFix implements ClientModInitializer {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
+    public static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
     public static final boolean jeiLoaded = FabricLoader.getInstance().isModLoaded("jei");
     public static final boolean reiLoaded = FabricLoader.getInstance().isModLoaded("roughlyenoughitems");

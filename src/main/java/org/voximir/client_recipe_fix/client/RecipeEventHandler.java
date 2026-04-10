@@ -3,10 +3,9 @@ package org.voximir.client_recipe_fix.client;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.network.chat.Component;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.voximir.client_recipe_fix.client.injector.RecipeInjector;
 
+import static com.mojang.text2speech.Narrator.LOGGER;
 import static org.voximir.client_recipe_fix.client.ClientRecipeFix.jeiLoaded;
 import static org.voximir.client_recipe_fix.client.ClientRecipeFix.reiLoaded;
 
@@ -16,11 +15,13 @@ import static org.voximir.client_recipe_fix.client.ClientRecipeFix.reiLoaded;
  * any real server sync finish first.
  */
 public class RecipeEventHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
-
     private static int ticksUntilInjection = -1;
 
-    public static boolean jeiSupport = true;
+    private static boolean jeiSupport = true;
+
+    public static boolean isJeiSupported() {
+        return jeiSupport;
+    }
 
     public static void registerEvents() {
         if (!(jeiLoaded || reiLoaded)) {
@@ -31,7 +32,7 @@ public class RecipeEventHandler {
         if (jeiLoaded) LOGGER.info("JEI detected");
         if (reiLoaded) LOGGER.info("REI detected");
 
-        String jei_msg = """
+        String jeiMsg = """
                 JEI detected!
                 Full recipe sync with JEI requires Minecraft 1.21.10 or newer.
                 On versions 1.21.9 and below, this is limited by the Fabric API.
@@ -40,14 +41,14 @@ public class RecipeEventHandler {
 
         if (!FabricApiCompat.HAS_RECIPE_SYNC && jeiLoaded) {
             jeiSupport = false;
-            LOGGER.warn(jei_msg.replaceAll("\\s+", " "));
+            LOGGER.warn(jeiMsg.replaceAll("\\s+", " "));
         }
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
             LOGGER.info("Joined server, injecting recipes in {} ticks", ClientRecipeFixConfig.injectionDelayTicks);
 
             if (!jeiSupport && client.player != null) {
-                client.player.displayClientMessage(Component.literal("[Client Recipe Fix] " + jei_msg), false);
+                client.player.displayClientMessage(Component.literal("[Client Recipe Fix] " + jeiMsg), false);
             }
 
             ticksUntilInjection = ClientRecipeFixConfig.injectionDelayTicks;

@@ -9,22 +9,19 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.RecipeDisplayEntry;
 import net.minecraft.world.item.crafting.display.RecipeDisplayId;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
+import static com.mojang.text2speech.Narrator.LOGGER;
+
 /**
  * Fires Architectury's ClientRecipeUpdateEvent.ADD so REI picks up our recipes.
  * Only loaded when Architectury is present (REI dependency).
  */
 public class REIRecipeInjector {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
-
     public static void injectRecipes(RecipeAccess recipeAccess, List<RecipeHolder<?>> recipes) {
         List<ClientboundRecipeBookAddPacket.Entry> entries = new ArrayList<>();
         Object2IntOpenHashMap<String> groupIndices = new Object2IntOpenHashMap<>();

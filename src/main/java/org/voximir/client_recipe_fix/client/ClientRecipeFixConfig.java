@@ -3,15 +3,14 @@ package org.voximir.client_recipe_fix.client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.mojang.text2speech.Narrator.LOGGER;
+
 public class ClientRecipeFixConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance()
             .getConfigDir().resolve("client_recipe_fix.json");
