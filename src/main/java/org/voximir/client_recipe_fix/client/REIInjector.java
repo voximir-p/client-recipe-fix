@@ -21,11 +21,11 @@ import java.util.OptionalInt;
  * Fires Architectury's ClientRecipeUpdateEvent.ADD so REI picks up our recipes.
  * Only loaded when Architectury is present (REI dependency).
  */
-public class REICompat {
+public class REIInjector {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
-    public static void fireRecipeAddEvent(RecipeAccess recipeAccess, List<RecipeHolder<?>> recipes) {
+    public static void injectRecipes(RecipeAccess recipeAccess, List<RecipeHolder<?>> recipes) {
         List<ClientboundRecipeBookAddPacket.Entry> entries = new ArrayList<>();
         Object2IntOpenHashMap<String> groupIndices = new Object2IntOpenHashMap<>();
         int displayIndex = 0;
