@@ -10,5 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Ported the project to Minecraft 26.1.2, but it should work on Minecraft 26.1 and 26.1.1 as well.
+- Refactored the codebase to synchronize with the latest changes in the mc21.11 branch.
 
 [unreleased]: https://github.com/voximir-p/client-recipe-fix/compare/1.2.0+mc21.2-21.11...HEAD
