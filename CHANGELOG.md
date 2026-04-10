@@ -18,4 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cloth Config API is now required for the mod's configuration menu.
   But it is not required for the mod to work, as the config file can be edited manually.
 
-[unreleased]: https://github.com/voximir-p/client-recipe-fix/compare/1.2.0+mc21.2-21.11...HEAD
+[unreleased]: https://github.com/voximir-p/client-recipe-fix/compare/1.2.1+mc21.2-21.11...HEAD
