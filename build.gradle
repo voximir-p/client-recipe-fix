@@ -39,9 +39,9 @@ dependencies {
     modRuntimeOnly "maven.modrinth:modmenu:17.0.0"
     modRuntimeOnly "maven.modrinth:cloth-config:21.11.153+fabric"
 
-    modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
+    modRuntimeOnly "maven.modrinth:jei:27.4.0.22"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
-    // modRuntimeOnly "maven.modrinth:jei:27.4.0.22"
+    // modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
 }
 
 processResources {
