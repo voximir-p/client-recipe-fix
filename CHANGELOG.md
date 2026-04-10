@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Cloth Config API is now required for the mod to work.
+- Cloth Config API is now required for the mod's configuration menu.
+  But it is not required for the mod to work, as the config file can be edited manually.
 - Refactored the codebase.
 
 ## [1.2.0] - 2026-04-10
