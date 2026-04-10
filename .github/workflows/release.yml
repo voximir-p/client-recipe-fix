@@ -79,6 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       body: ${{ steps.changelog.outputs.body }}
+      prerelease: ${{ steps.changelog.outputs.prerelease }}
     steps:
       - name: Checkout tag
         uses: actions/checkout@v4
@@ -109,11 +110,14 @@ jobs:
           # Trim leading/trailing blank lines from body
           BODY=$(echo "$BODY" | sed -e '/./,$!d' -e :a -e '/^\n*$/{$d;N;ba}')
 
-          # If version not found in changelog, fall back to [Unreleased] section
+          # If version not found in changelog, fall back to [Unreleased] section and mark as prerelease
           if [ -z "$BODY" ]; then
             echo "::warning::Version $VERSION not found in CHANGELOG.md, falling back to [Unreleased] section"
             BODY=$(awk '/^## \[Unreleased\]/{found=1; next} found && /^## \[/{exit} found && /^\[.*\]: /{exit} found{print}' CHANGELOG.md)
             BODY=$(echo "$BODY" | sed -e '/./,$!d' -e :a -e '/^\n*$/{$d;N;ba}')
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
           fi
 
           # Use heredoc for multiline body, prepend "## Release Notes"
@@ -141,6 +145,7 @@ jobs:
           tag_name: ${{ needs.build-setup.outputs.tag }}
           name: ${{ needs.build-setup.outputs.tag }}
           body: ${{ needs.release-setup.outputs.body }}
+          prerelease: ${{ needs.release-setup.outputs.prerelease == 'true' }}
           files: |
             artifacts/client-recipe-fix-${{ needs.build-setup.outputs.tag }}.jar
             artifacts/client-recipe-fix-${{ needs.build-setup.outputs.tag }}.jar.sha256
