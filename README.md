@@ -4,17 +4,17 @@
 
 <img alt="About" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/about.png?raw=true" style="margin: 24px 0 -6px;"/>
 
-Since Minecraft 1.21.2, recipes are stored on the server and only unlocked recipes are sent to the client.<br/>
-This means **JEI / REI can only display recipes you’ve unlocked** 😔
+Since Minecraft 1.21.2, recipes are stored on the server, and only unlocked recipes are sent to the client.<br/>
+As a result, **JEI / REI can only show the recipes you have unlocked** 😔
 
-This mod fixes that entirely on the **client side**!
+This mod fixes that entirely on the **client side**.
 
-**Client Recipe Fix** restores access to **all vanilla crafting recipes** in your client, allowing mods like **JEI** and
-**REI** to display them properly again, even on servers where recipes aren’t fully synced.
+**Client Recipe Fix** restores access to **all vanilla crafting recipes** in your client, allowing mods like
+**JEI** and **REI** to display them properly again, even on servers where recipes are not fully synced.
 
 > ⚠️ **This mod can only restore vanilla recipes.**<br/>
-> Custom datapack or server-side recipes cannot be accessed, as they are never sent to the client.<br/>
-> 
+> Custom datapack or server-side recipes cannot be accessed, because they are never sent to the client.<br/>
+>
 > ⚠️ **JEI support requires Minecraft 1.21.10 or newer.**<br/>
 > On Minecraft 1.21.9 and earlier, this is limited by the Fabric API.<br/>
 > For full support on older versions, consider using REI instead.
@@ -24,19 +24,19 @@ This mod fixes that entirely on the **client side**!
 <img alt="Features" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/features.png?raw=true" style="margin: 24px 0 -6px;"/>
 
 * **Restores all vanilla recipes** for display in JEI / REI
-* **No OP required**, it works on any server
-* **Multiplayer-safe**, there is no server interaction
+* **No OP required**, works on any server
+* **Multiplayer-safe**, no server interaction needed
 * **Non-invasive**, it does NOT override server data
-* **Lightweight & fast**, it loads instantly with the game
+* **Lightweight & fast**, loads instantly with the game
 
 <img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -12px 0;"/>
 
-<img alt="Media" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media.png?raw=true" style="margin: 24px 0 -2px;"/><br/>
+<img alt="Media" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media.png?raw=true" style="margin: 2px 0 -2px;"/><br/>
 
-<img alt="Media" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media_1_X.png?raw=true" width=500/><br/>
-*No more REI warnings*<br/><br/>
-<img alt="Media" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media_2_X.png?raw=true" width=500/><br/>
-*No more JEI warnings*
+<img alt="Media 1" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media_1_X.png?raw=true" width=500/><br/>
+No more REI warnings<br/><br/>
+<img alt="Media 2" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media_2_X.png?raw=true" width=500/><br/>
+No more JEI warnings
 
 <img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -12px 0;"/>
 
@@ -44,18 +44,40 @@ This mod fixes that entirely on the **client side**!
 
 ### Does this mod unlock the recipes in the recipe book?
 
-No, this is only for JEI / REI. You would still need to unlock the recipes in the recipe book by yourself.
+No. This is only for JEI / REI. You still need to unlock recipes in the recipe book yourself.
 
 ### Can it show modded or datapack recipes?
 
-No, those are controlled by the server and cannot be accessed client-side.
+No. Those are controlled by the server and cannot be accessed client-side.
 
 ### Is this cheating?
 
-No, it only restores **vanilla knowledge**, similar to using a wiki.
+No. It only restores **vanilla knowledge**, similar to using a wiki.
+
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -12px 0;"/>
+
+<img alt="Building" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/building.png?raw=true" style="margin: 24px 0 -2px;"/>
+
+1. Clone the repository:
+   ```bash
+   $ git clone https://github.com/voximir-p/client-recipe-fix.git
+   ```
+
+2. `cd` into the project directory:
+
+   ```bash
+   $ cd client-recipe-fix
+   ```
+3. Build the mod using Gradle:
+
+   ```bash
+   $ ./gradlew build
+   ```
+
+The output JAR file can be found in `build/libs/`.
 
 <img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -16px 0;"/>
 
-<img alt="Features" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/license.png?raw=true" style="margin: 24px 0 -2px;"/>
+<img alt="License" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/license.png?raw=true" style="margin: 24px 0 -2px;"/>
 
 This project is licensed under the MIT license. See [LICENSE](LICENSE) for more details.
