@@ -2,6 +2,10 @@
 
 <img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -16px 0;"/>
 
+> [!CAUTION]
+> README.md are only updated in the main branch.<br/>
+> This document might be outdated!
+
 <img alt="About" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/about.png?raw=true" style="margin: 24px 0 -6px;"/>
 
 Since Minecraft 1.21.2, recipes are stored on the server and only unlocked recipes are sent to the client.<br/>
