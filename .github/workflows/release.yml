@@ -109,6 +109,13 @@ jobs:
           # Trim leading/trailing blank lines from body
           BODY=$(echo "$BODY" | sed -e '/./,$!d' -e :a -e '/^\n*$/{$d;N;ba}')
 
+          # If version not found in changelog, fall back to [Unreleased] section
+          if [ -z "$BODY" ]; then
+            echo "::warning::Version $VERSION not found in CHANGELOG.md, falling back to [Unreleased] section"
+            BODY=$(awk '/^## \[Unreleased\]/{found=1; next} found && /^## \[/{exit} found && /^\[.*\]: /{exit} found{print}' CHANGELOG.md)
+            BODY=$(echo "$BODY" | sed -e '/./,$!d' -e :a -e '/^\n*$/{$d;N;ba}')
+          fi
+
           # Use heredoc for multiline body, prepend "## Release Notes"
           {
             echo "body<<CHANGELOG_EOF"
