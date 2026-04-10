@@ -42,6 +42,7 @@
   ],
   "suggests": {
     "jei": "*",
-    "roughlyenoughitems": "*"
+    "roughlyenoughitems": "*",
+    "cloth-config": "*"
   }
 }
