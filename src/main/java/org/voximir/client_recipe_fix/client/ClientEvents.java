@@ -29,13 +29,13 @@ public class ClientEvents {
         if (jeiLoaded) LOGGER.info("JEI detected");
         if (reiLoaded) LOGGER.warn("REI detected! It is not supported in this version.");
 
-        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+        ClientPlayConnectionEvents.JOIN.register((_, _, _) -> {
             LOGGER.info("Joined server, injecting recipes in {} ticks", INJECTION_DELAY_TICKS);
 
             ticksUntilInjection = INJECTION_DELAY_TICKS;
         });
 
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> ticksUntilInjection = -1);
+        ClientPlayConnectionEvents.DISCONNECT.register((_, _) -> ticksUntilInjection = -1);
 
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
             if (ticksUntilInjection > 0) {
