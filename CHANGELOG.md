@@ -58,7 +58,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added feature to restore missing recipes from the client,
   ensuring they are visible in JEI and REI.
 
-[unreleased]: https://github.com/voximir-p/client-recipe-fix/compare/1.2.0+mc21.2-21.11...HEAD
+[unreleased]: https://github.com/voximir-p/client-recipe-fix/compare/1.2.1+mc21.2-21.11...HEAD
+[1.2.1]: https://github.com/voximir-p/client-recipe-fix/compare/1.2.0+mc21.10-21.11...1.2.1+mc21.2-21.11
 [1.2.0]: https://github.com/voximir-p/client-recipe-fix/compare/1.1.2+mc21.10-21.11...1.2.0+mc21.2-21.11
 [1.1.2]: https://github.com/voximir-p/client-recipe-fix/compare/1.1.1+mc21.10-21.11...1.1.2+mc21.10-21.11
 [1.1.1]: https://github.com/voximir-p/client-recipe-fix/compare/1.1.0+mc21.10-21.11...1.1.1+mc21.10-21.11
