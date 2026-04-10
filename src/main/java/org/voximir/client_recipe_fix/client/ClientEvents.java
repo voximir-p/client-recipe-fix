@@ -18,7 +18,6 @@ import static org.voximir.client_recipe_fix.client.ClientRecipeFixClient.reiLoad
 public class ClientEvents {
     private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
-    private static final int INJECTION_DELAY_TICKS = 5;
     private static int ticksUntilInjection = -1;
 
     public static boolean jeiSupport = true;
@@ -45,13 +44,13 @@ public class ClientEvents {
         }
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            LOGGER.info("Joined server, injecting recipes in {} ticks", INJECTION_DELAY_TICKS);
+            LOGGER.info("Joined server, injecting recipes in {} ticks", ModConfig.injectionDelayTicks);
 
             if (!jeiSupport && client.player != null) {
                 client.player.displayClientMessage(Component.literal("[Client Recipe Fix] " + jei_msg), false);
             }
 
-            ticksUntilInjection = INJECTION_DELAY_TICKS;
+            ticksUntilInjection = ModConfig.injectionDelayTicks;
         });
 
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> ticksUntilInjection = -1);

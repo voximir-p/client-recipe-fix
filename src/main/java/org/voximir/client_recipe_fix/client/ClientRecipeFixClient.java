@@ -13,6 +13,7 @@ public class ClientRecipeFixClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ModConfig.loadConfig();
         ClientEvents.registerEvents();
 
         LOGGER.info("Initialized");
