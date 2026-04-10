@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class JEIInjector {
+public class JEIRecipeInjector {
     private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
     public static void injectRecipes(Minecraft client, List<RecipeHolder<?>> recipes) {

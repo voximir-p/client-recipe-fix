@@ -5,7 +5,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClientRecipeFixClient implements ClientModInitializer {
+public class ClientRecipeFix implements ClientModInitializer {
     private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
     public static final boolean jeiLoaded = FabricLoader.getInstance().isModLoaded("jei");
@@ -13,8 +13,8 @@ public class ClientRecipeFixClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ModConfig.loadConfig();
-        ClientEvents.registerEvents();
+        ClientRecipeFixConfig.loadConfig();
+        RecipeEventHandler.registerEvents();
 
         LOGGER.info("Initialized");
     }

@@ -21,7 +21,7 @@ import java.util.OptionalInt;
  * Fires Architectury's ClientRecipeUpdateEvent.ADD so REI picks up our recipes.
  * Only loaded when Architectury is present (REI dependency).
  */
-public class REIInjector {
+public class REIRecipeInjector {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 

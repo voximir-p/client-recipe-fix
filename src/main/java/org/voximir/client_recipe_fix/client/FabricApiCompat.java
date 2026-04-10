@@ -1,6 +1,6 @@
 package org.voximir.client_recipe_fix.client;
 
-public class Compat {
+public class FabricApiCompat {
     public static final boolean HAS_RECIPE_SYNC;
 
     static {

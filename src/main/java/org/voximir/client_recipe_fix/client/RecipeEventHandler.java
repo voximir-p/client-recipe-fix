@@ -5,17 +5,17 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.voximir.client_recipe_fix.client.injector.Injector;
+import org.voximir.client_recipe_fix.client.injector.RecipeInjector;
 
-import static org.voximir.client_recipe_fix.client.ClientRecipeFixClient.jeiLoaded;
-import static org.voximir.client_recipe_fix.client.ClientRecipeFixClient.reiLoaded;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.jeiLoaded;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.reiLoaded;
 
 /**
  * Loads vanilla recipes from the MC JAR and fires ClientRecipeSynchronizedEvent
  * so JEI/REI can pick them up. Delayed by a few ticks after joining to let
  * any real server sync finish first.
  */
-public class ClientEvents {
+public class RecipeEventHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger("Client Recipe Fix");
 
     private static int ticksUntilInjection = -1;
@@ -38,19 +38,19 @@ public class ClientEvents {
                 For full support on older versions, consider using REI instead.
                 """;
 
-        if (!Compat.HAS_RECIPE_SYNC && jeiLoaded) {
+        if (!FabricApiCompat.HAS_RECIPE_SYNC && jeiLoaded) {
             jeiSupport = false;
             LOGGER.warn(jei_msg.replaceAll("\\s+", " "));
         }
 
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            LOGGER.info("Joined server, injecting recipes in {} ticks", ModConfig.injectionDelayTicks);
+            LOGGER.info("Joined server, injecting recipes in {} ticks", ClientRecipeFixConfig.injectionDelayTicks);
 
             if (!jeiSupport && client.player != null) {
                 client.player.displayClientMessage(Component.literal("[Client Recipe Fix] " + jei_msg), false);
             }
 
-            ticksUntilInjection = ModConfig.injectionDelayTicks;
+            ticksUntilInjection = ClientRecipeFixConfig.injectionDelayTicks;
         });
 
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> ticksUntilInjection = -1);
@@ -60,7 +60,7 @@ public class ClientEvents {
                 ticksUntilInjection--;
             } else if (ticksUntilInjection == 0) {
                 ticksUntilInjection = -1;
-                Injector.performInjection(mc);
+                RecipeInjector.performInjection(mc);
             }
         });
     }
