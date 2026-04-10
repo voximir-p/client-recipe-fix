@@ -23,7 +23,7 @@ public class ModMenuIntegration implements ModMenuApi {
             general.addEntry(entryBuilder.startIntSlider(
                             Component.literal("Injection Delay (ticks)"),
                             ClientRecipeFixConfig.injectionDelayTicks, 0, 100)
-                    .setDefaultValue(20)
+                    .setDefaultValue(ClientRecipeFixConfig.injectionDelayTicksDefault)
                     .setTooltip(Component.literal("Delay in ticks before injecting recipes after joining a server"))
                     .setSaveConsumer(newValue -> ClientRecipeFixConfig.injectionDelayTicks = newValue)
                     .build());

@@ -17,11 +17,12 @@ public class ClientRecipeFixConfig {
             .getConfigDir().resolve("client_recipe_fix.json");
 
     // ── Config fields ────────────────────────────────────────────────────────
-    public static int injectionDelayTicks = 20;
+    public static int injectionDelayTicksDefault = 5;
+    public static int injectionDelayTicks = injectionDelayTicksDefault;
 
     // ── Serializable data holder ─────────────────────────────────────────────
     private static class Data {
-        int injectionDelayTicks = 20;
+        int injectionDelayTicks = injectionDelayTicksDefault;
     }
 
     /**
