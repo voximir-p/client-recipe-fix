@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
 
 /**
  * Fires Architectury's ClientRecipeUpdateEvent.ADD so REI picks up our recipes.

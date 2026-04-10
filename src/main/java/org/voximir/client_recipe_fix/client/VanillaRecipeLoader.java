@@ -25,7 +25,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Stream;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
 
 public class VanillaRecipeLoader {
     /**

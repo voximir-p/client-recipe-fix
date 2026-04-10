@@ -7,7 +7,7 @@ import org.voximir.client_recipe_fix.client.VanillaRecipeLoader;
 
 import java.util.List;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
 import static org.voximir.client_recipe_fix.client.ClientRecipeFix.jeiLoaded;
 import static org.voximir.client_recipe_fix.client.ClientRecipeFix.reiLoaded;
 import static org.voximir.client_recipe_fix.client.RecipeEventHandler.isJeiSupported;

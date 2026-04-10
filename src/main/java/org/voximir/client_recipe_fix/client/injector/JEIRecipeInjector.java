@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
 
 public class JEIRecipeInjector {
     public static void injectRecipes(Minecraft client, List<RecipeHolder<?>> recipes) {

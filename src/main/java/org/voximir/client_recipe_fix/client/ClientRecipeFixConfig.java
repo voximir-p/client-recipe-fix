@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static org.voximir.client_recipe_fix.client.ClientRecipeFix.LOGGER;
 
 public class ClientRecipeFixConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
