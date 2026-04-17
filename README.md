@@ -1,8 +1,8 @@
 ![Client Recipe Fix Banner](https://github.com/voximir-p/asset/blob/main/client-recipe-fix/title_card.png?raw=true)
 
-<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -16px 0;"/>
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/common/separate.png?raw=true" style="margin: -16px 0;"/>
 
-<img alt="About" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/about.png?raw=true" style="margin: 24px 0 -6px;"/>
+<img alt="About" src="https://github.com/voximir-p/asset/blob/main/common/about.png?raw=true" style="margin: 24px 0 -6px;"/>
 
 Since Minecraft 1.21.2, recipes are stored on the server, and only unlocked recipes are sent to the client.<br/>
 As a result, **JEI / REI can only show the recipes you have unlocked** 😔
@@ -19,9 +19,9 @@ This mod fixes that entirely on the **client side**.
 > On Minecraft 1.21.9 and earlier, this is limited by the Fabric API.<br/>
 > For full support on older versions, consider using REI instead.
 
-<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -16px 0;"/>
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/common/separate.png?raw=true" style="margin: -16px 0;"/>
 
-<img alt="Features" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/features.png?raw=true" style="margin: 24px 0 -6px;"/>
+<img alt="Features" src="https://github.com/voximir-p/asset/blob/main/common/features.png?raw=true" style="margin: 24px 0 -6px;"/>
 
 * **Restores all vanilla recipes** for display in JEI / REI
 * **No OP required**, works on any server
@@ -29,18 +29,18 @@ This mod fixes that entirely on the **client side**.
 * **Non-invasive**, it does NOT override server data
 * **Lightweight & fast**, loads instantly with the game
 
-<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -12px 0;"/>
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/common/separate.png?raw=true" style="margin: -12px 0;"/>
 
-<img alt="Media" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media.png?raw=true" style="margin: 2px 0 -2px;"/><br/>
+<img alt="Media" src="https://github.com/voximir-p/asset/blob/main/common/media.png?raw=true" style="margin: 2px 0 -2px;"/><br/>
 
 <img alt="Media 1" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media_1_X.png?raw=true" width=500/><br/>
 No more REI warnings<br/><br/>
 <img alt="Media 2" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/media_2_X.png?raw=true" width=500/><br/>
 No more JEI warnings
 
-<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -12px 0;"/>
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/common/separate.png?raw=true" style="margin: -12px 0;"/>
 
-<img alt="FAQ" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/faq.png?raw=true" style="margin: 24px 0 -2px;"/>
+<img alt="FAQ" src="https://github.com/voximir-p/asset/blob/main/common/faq.png?raw=true" style="margin: 24px 0 -2px;"/>
 
 ### Does this mod unlock the recipes in the recipe book?
 
@@ -54,9 +54,9 @@ No. Those are controlled by the server and cannot be accessed client-side.
 
 No. It only restores **vanilla knowledge**, similar to using a wiki.
 
-<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -12px 0;"/>
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/common/separate.png?raw=true" style="margin: -12px 0;"/>
 
-<img alt="Building" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/building.png?raw=true" style="margin: 24px 0 -2px;"/>
+<img alt="Building" src="https://github.com/voximir-p/asset/blob/main/common/building.png?raw=true" style="margin: 24px 0 -2px;"/>
 
 1. Clone the repository:
    ```bash
@@ -76,8 +76,8 @@ No. It only restores **vanilla knowledge**, similar to using a wiki.
 
 The output JAR file can be found in `build/libs/`.
 
-<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/separate.png?raw=true" style="margin: -16px 0;"/>
+<img alt="Separate" src="https://github.com/voximir-p/asset/blob/main/common/separate.png?raw=true" style="margin: -16px 0;"/>
 
-<img alt="License" src="https://github.com/voximir-p/asset/blob/main/client-recipe-fix/license.png?raw=true" style="margin: 24px 0 -2px;"/>
+<img alt="License" src="https://github.com/voximir-p/asset/blob/main/common/license.png?raw=true" style="margin: 24px 0 -2px;"/>
 
 This project is licensed under the MIT license. See [LICENSE](LICENSE) for more details.
