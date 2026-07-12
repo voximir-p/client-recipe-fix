@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom' version '1.16.1'
+    id 'net.fabricmc.fabric-loom' version '1.17.14'
     id 'maven-publish'
 }
 
@@ -36,10 +36,10 @@ dependencies {
 
     // implementation "dev.architectury:architectury-fabric:19.0.1"
 
-    implementation "com.terraformersmc:modmenu:18.0.0-alpha.8"
-    implementation "me.shedaniel.cloth:cloth-config-fabric:26.1.154"
+    implementation "maven.modrinth:modmenu:20.0.1"
+    implementation "maven.modrinth:cloth-config:26.2.155+fabric"
 
-    runtimeOnly "maven.modrinth:jei:29.4.0.23"
+    runtimeOnly "maven.modrinth:jei:30.4.0.25"
     // compileOnly "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
     // implementation "me.shedaniel:RoughlyEnoughItems-fabric:21.11.814"
 }
